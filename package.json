@@ -1,0 +1,33 @@
+{
+  "name": "elven-cli",
+  "version": "1.0.1",
+  "description": "A staging for creating react app quickly",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElvenYao/elven-cli.git"
+  },
+  "author": "Elven",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ElvenYao/elven-cli/issues"
+  },
+  "homepage": "https://github.com/ElvenYao/elven-cli#readme",
+  "bin": {
+    "elven-cli": "./bin/bin.js"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "child_process": "^1.0.2",
+    "commander": "^6.1.0",
+    "commitizen": "^4.2.1",
+    "download-git-repo": "^3.0.2",
+    "inquirer": "^7.3.3",
+    "ora": "^5.1.0"
+  }
+}
