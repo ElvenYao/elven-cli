@@ -1,6 +1,6 @@
 {
   "name": "elven-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A staging for creating react app quickly",
   "main": "index.js",
   "scripts": {

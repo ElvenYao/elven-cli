@@ -5,6 +5,22 @@ const { exec } = require('child_process')
 const fs = require('fs')
 chalk.level = 3 // 设置chalk等级为3
 
+const printTeam = () => {
+  console.log(
+    chalk.yellow(` 
+    ******** **       **      ** ******** ****     **
+    /**///// /**      /**     /**/**///// /**/**   /**
+    /**      /**      /**     /**/**      /**//**  /**
+    /******* /**      //**    ** /******* /** //** /**
+    /**////  /**       //**  **  /**////  /**  //**/**
+    /**      /**        //****   /**      /**   //****
+    /********/********   //**    /********/**    //***
+    //////// ////////     //     //////// //      ///
+
+                - Welcome to Elven-cli!!! -
+  `)
+  )
+}
 module.exports = () => {
   console.log(chalk.green('=========starting init project!========'))
   inquirer
@@ -23,6 +39,7 @@ module.exports = () => {
       },
     ])
     .then((answer) => {
+      printTeam()
       console.log(chalk.gray('doing init...'))
       console.log(chalk.green('init project files\n'))
       const gitUrl = 'https://github.com/ElvenYao/react-production.git'
