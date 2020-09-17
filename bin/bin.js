@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 const fs = require('fs')
 const program = require('commander')
-const ora = require('ora')
 //version 版本号
 //name 新项目名称
 program

@@ -3,6 +3,7 @@ const chalk = require('chalk')
 const inquirer = require('inquirer')
 const { exec } = require('child_process')
 const fs = require('fs')
+const ora = require('ora')
 chalk.level = 3 // 设置chalk等级为3
 
 const printTeam = () => {
@@ -22,6 +23,7 @@ const printTeam = () => {
   )
 }
 module.exports = () => {
+  printTeam()
   console.log(chalk.green('=========starting init project!========'))
   inquirer
     .prompt([
@@ -39,18 +41,21 @@ module.exports = () => {
       },
     ])
     .then((answer) => {
-      printTeam()
+      const spinner = ora('download template...')
       console.log(chalk.gray('doing init...'))
-      console.log(chalk.green('init project files\n'))
+      spinner.start()
       const gitUrl = 'https://github.com/ElvenYao/react-production.git'
       exec(
         `git clone ${gitUrl} ${answer.projectName}`,
         (error, stdout, stderr) => {
+          const initSpinner = ora('init project...')
           if (error) {
             // 当有错误时打印出错误并退出操作
+            spinner.fail()
             console.log(chalk.red(error))
             process.exit()
           }
+          spinner.succeed()
           fs.readFile(
             `${process.cwd()}/${answer.projectName}/package.json`,
             (err, data) => {
@@ -69,8 +74,13 @@ module.exports = () => {
                     process.exit()
                   }
                   console.log(
-                    chalk.green('=========init finished!================')
+                    chalk.green(
+                      '=========Project init finished!================'
+                    )
                   )
+                  initSpinner.succeed()
+                  console.log('project install: "yarn install" or "npm insall"')
+                  console.log('project start: "yarn start" or "npm run start"')
                   process.exit() // 退出这次命令行操作
                 }
               )
