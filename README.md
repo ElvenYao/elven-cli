@@ -2,6 +2,12 @@
 
 A staging for build production app quickly
 
+## Install
+
+```
+npm install -g elven-cli
+```
+
 ## Init a project
 
 ```
@@ -10,13 +16,11 @@ elven-cli init
 
 ## Install dependencies
 
-### Yarn
-
 ```
 yarn install
 ```
 
-### NPM
+or
 
 ```
 npm install
