@@ -2,10 +2,13 @@
 
 A staging for build production app quickly
 
-## test in local
+## dev in local
+
+本地调试，如果 bin 已经存在，用
 
 ```
 npm link
+npm link --force
 ```
 
 ## publish

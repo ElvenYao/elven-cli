@@ -40,18 +40,10 @@ module.exports = () => {
         },
       },
       {
-        type: 'checkbox', // 单选框
+        type: 'rawlist', // 单选框
         message: 'choise  Typescript or Javascript:', // 问题描述
         name: 'codeType', // 问题对应的属性
-        choices: [
-          {
-            name: 'Javascript',
-            checked: true, // 默认选中
-          },
-          {
-            name: 'Typescript',
-          },
-        ], // 选项
+        choices: ['Javascript', 'Typescript'], // 选项
         validate: (val) => {
           // 对输入的值做判断
           if (val === '') {
@@ -62,7 +54,7 @@ module.exports = () => {
       },
     ])
     .then((answers) => {
-      console.log('answers', answers)
+      // console.log('answers', answers) //answers { projectName: 'test', codeType: 'Javascript' }
       const spinner = ora('download template...')
       console.log(chalk.gray('doing init...'))
       spinner.start()
