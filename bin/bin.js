@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const fs = require('fs')
+
 const program = require('commander')
 //version 版本号
 //name 新项目名称

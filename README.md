@@ -2,6 +2,18 @@
 
 A staging for build production app quickly
 
+## test in local
+
+```
+npm link
+```
+
+## publish
+
+```
+npm publish
+```
+
 ## Install
 
 ```

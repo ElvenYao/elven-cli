@@ -1,4 +1,4 @@
-const download = require('download-git-repo')
+// const download = require('download-git-repo')
 const chalk = require('chalk')
 const inquirer = require('inquirer')
 const { exec } = require('child_process')
@@ -39,14 +39,36 @@ module.exports = () => {
           return true
         },
       },
+      {
+        type: 'checkbox', // 单选框
+        message: 'choise  Typescript or Javascript:', // 问题描述
+        name: 'codeType', // 问题对应的属性
+        choices: [
+          {
+            name: 'Javascript',
+            checked: true, // 默认选中
+          },
+          {
+            name: 'Typescript',
+          },
+        ], // 选项
+        validate: (val) => {
+          // 对输入的值做判断
+          if (val === '') {
+            return chalk.red('Project name cannot be empty empty!!')
+          }
+          return true
+        },
+      },
     ])
-    .then((answer) => {
+    .then((answers) => {
+      console.log('answers', answers)
       const spinner = ora('download template...')
       console.log(chalk.gray('doing init...'))
       spinner.start()
       const gitUrl = 'https://github.com/ElvenYao/react-production.git'
       exec(
-        `git clone ${gitUrl} ${answer.projectName}`,
+        `git clone ${gitUrl} ${answers.projectName}`,
         (error, stdout, stderr) => {
           const initSpinner = ora('init project...')
           if (error) {
@@ -57,16 +79,16 @@ module.exports = () => {
           }
           spinner.succeed()
           fs.readFile(
-            `${process.cwd()}/${answer.projectName}/package.json`,
+            `${process.cwd()}/${answers.projectName}/package.json`,
             (err, data) => {
               if (error) {
                 console.log(chalk.red('read package.json fail!'))
                 process.exit()
               }
               data = JSON.parse(data.toString())
-              data.name = answer.projectName
+              data.name = answers.projectName
               fs.writeFile(
-                `${process.cwd()}/${answer.projectName}/package.json`,
+                `${process.cwd()}/${answers.projectName}/package.json`,
                 JSON.stringify(data, '', '\t'),
                 (err) => {
                   if (err) {
@@ -79,6 +101,7 @@ module.exports = () => {
                     )
                   )
                   initSpinner.succeed()
+                  // console.log(`to your project: "cd ${answer.projectName}"`)
                   console.log('project install: "yarn install" or "npm insall"')
                   console.log('project start: "yarn start" or "npm run start"')
                   process.exit() // 退出这次命令行操作
@@ -88,5 +111,7 @@ module.exports = () => {
           )
         }
       )
+
+      // exec(`cd ${answer.projectName} && npm insall`)
     })
 }
